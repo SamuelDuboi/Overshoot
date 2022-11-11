@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
@@ -27,10 +28,16 @@ public class MyController : MonoBehaviour
     private Objects carriedObject;
 
     public float throwForce = 100;
+    public bool grab;
+    public bool isGrab;
+    public GameObject aroundTarget;
+    private float reloadTime;
+    public GameObject ui;
+    public Image filImage;
     // Start is called before the first frame update
     void Start()
     {
-        Timer = dashCurve.length;
+        Timer = dashCurve.keys[1].time;
     }
 
     // Update is called once per frame
@@ -47,7 +54,7 @@ public class MyController : MonoBehaviour
             transform.LookAt(transform.position + directionAngle.normalized);
 
 
-        if (Timer < dashCurve.length)
+        if (Timer < dashCurve.keys[dashCurve.keys.Length - 1].time)
         {
             Timer += Time.deltaTime;
             dashForce = 1 + dashCurve.Evaluate(Timer) * dashForceMax;
@@ -55,10 +62,19 @@ public class MyController : MonoBehaviour
         }
         if (dashing)
         {
+
             dashing = false;
+            dashForce = 1;
             gameObject.layer = 7;
         }
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer ==7 && dashing)
+        {
+            Timer = dashCurve.keys[dashCurve.keys.Length-1].time;
+        }
     }
     public void Throw(InputAction.CallbackContext context)
     {
@@ -110,9 +126,29 @@ public class MyController : MonoBehaviour
             {
                 var Weapon = carriedObject as Weapon;
                 if (Weapon)
-                    Weapon.Fire();
+                {
+                    reloadTime = Weapon.Fire();
+                    if (reloadTime > -1)
+                    {
+                        myRigidbody.AddForce(-transform.forward * 15, ForceMode.Impulse);
+                        StartCoroutine(ReloadTimeFeedback(reloadTime));
+                        ui.SetActive(true);
+                    }
+                }
+                    
+
             }
         }
+    }
+    IEnumerator ReloadTimeFeedback(float maxReloadTime)
+    {
+        while (reloadTime > 0)
+        {
+            reloadTime -= 0.01f;
+            filImage.fillAmount =1- reloadTime / maxReloadTime;
+            yield return new WaitForSeconds(0.01f);
+        }
+        ui.SetActive(false);
     }
 
     public void Aim(InputAction.CallbackContext context)
@@ -124,6 +160,8 @@ public class MyController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (dashing)
+            return;
         if (!carriedObject)
         {
             directionAngle = speed * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
@@ -136,32 +174,58 @@ public class MyController : MonoBehaviour
 
     public void Interract(InputAction.CallbackContext context)
     {
-        if (context.canceled)
-        {
-            CollectColliBox.enabled = false;
-
-        }
-        if (carriedObject)
-            return;
+       
         if (context.started)
         {
-            CollectColliBox.enabled = true;
+
+            if (isGrab&&carriedObject)
+            {
+                Throw();
+                isGrab = false;
+                return;
+            }
+            Debug.Log("grab");
+                grab = true;
+
+        }
+        if (context.canceled)
+        {
+            grab = false;
+
         }
 
 
     }
-
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (carriedObject)
-            return;
-        collision.transform.SetParent(transform.GetChild(0));
-        collision.transform.localPosition = Vector3.zero;
-        collision.transform.localRotation = Quaternion.identity;
-        carriedObject = collision.gameObject.GetComponent<Objects>();
+        carriedObject = other.gameObject.GetComponent<Objects>();
         if (carriedObject)
         {
-            carriedObject.Grab();
+            aroundTarget.SetActive(true);
+            aroundTarget.transform.position = carriedObject.transform.position;
+            if (!grab)
+            {
+                return;
+            }
+            other.transform.SetParent(transform.GetChild(0));
+            other.transform.localPosition = Vector3.zero;
+            other.transform.localRotation = Quaternion.identity;
+            carriedObject = other.gameObject.GetComponent<Objects>();
+            if (carriedObject)
+            {
+                carriedObject.Grab();
+                isGrab = true;
+            }
+        }
+        else
+            aroundTarget.SetActive(false);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (carriedObject)
+        {
+            aroundTarget.SetActive(false);
         }
     }
+
 }
