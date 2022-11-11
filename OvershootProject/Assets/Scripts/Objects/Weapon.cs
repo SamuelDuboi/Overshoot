@@ -31,9 +31,9 @@ public class Weapon : Objects
         base.Dispose(force);
         gameObject.layer = 0;
     }
-    public void Fire()
+    public float Fire()
     {
-        if (!canShoot) return;
+        if (!canShoot) return -1;
         var bullet = Instantiate(ammo.bullet, firePosition.position, transform.rotation);
         if (transform.parent.parent.CompareTag("Team1Player"))
         {
@@ -44,6 +44,7 @@ public class Weapon : Objects
             bullet.tag = "Team2Bullet";
         }
         StartCoroutine(FireRateTimer());
+        return weaponType.fireRate;
     }
 
     private IEnumerator FireRateTimer()
