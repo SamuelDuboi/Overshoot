@@ -18,5 +18,4 @@ public class Objects : MonoBehaviour
         rb.isKinematic = false;
         rb.AddForce(transform.forward * force, ForceMode.Impulse);
     }
-
 }
