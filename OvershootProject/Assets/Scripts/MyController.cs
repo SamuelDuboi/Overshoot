@@ -21,6 +21,8 @@ public class MyController : MonoBehaviour
     
     
     private GameObject carriedObject;
+
+    public float throwForce= 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +41,9 @@ public class MyController : MonoBehaviour
     }
     public void Throw(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && carriedObject)
         {
-            Debug.Log("Throw");
+           carriedObject.GetComponent<Rigidbody>().AddForce(transform.forward.normalized*throwForce);
         }
     }
 
@@ -93,14 +95,10 @@ public class MyController : MonoBehaviour
 
     public void Interract(InputAction.CallbackContext context)
     {
+        if(carriedObject)
+            return;
         if (context.started)
         {
-            if (carriedObject)
-            {
-                 carriedObject.transform.SetParent(null);
-                 carriedObject = null;
-            }
-            else
             CollectColliBox.enabled = true;
         }
 
