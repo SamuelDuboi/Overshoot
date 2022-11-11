@@ -25,7 +25,9 @@ public class MyController : MonoBehaviour
     private Vector3 directionAngle;
     Vector3 lookingAt;
 
-    private Objects carriedObject;
+    private Objects registerInteractable;
+    private Objects carriedObejct;
+
 
     public float throwForce = 100;
     public bool grab;
@@ -34,6 +36,8 @@ public class MyController : MonoBehaviour
     private float reloadTime;
     public GameObject ui;
     public Image filImage;
+
+    public Workshop workshop;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,21 +82,21 @@ public class MyController : MonoBehaviour
     }
     public void Throw(InputAction.CallbackContext context)
     {
-        if (context.performed && carriedObject)
+        if (context.performed && carriedObejct)
         {
-            carriedObject.Dispose(throwForce);
-            carriedObject.transform.parent = null;
-            carriedObject = null;
+            carriedObejct.Dispose(throwForce);
+            carriedObejct.transform.parent = null;
+            carriedObejct = null;
         }
 
     }
     public void Throw()
     {
-        if (carriedObject)
+        if (carriedObejct)
         {
-            carriedObject.Dispose(throwForce);
-            carriedObject.transform.parent = null;
-            carriedObject = null;
+            carriedObejct.Dispose(throwForce);
+            carriedObejct.transform.parent = null;
+            carriedObejct = null;
         }
 
     }
@@ -122,9 +126,9 @@ public class MyController : MonoBehaviour
     {
         if (context.performed)
         {
-            if (carriedObject)
+            if (carriedObejct)
             {
-                var Weapon = carriedObject as Weapon;
+                var Weapon = carriedObejct as Weapon;
                 if (Weapon)
                 {
                     reloadTime = Weapon.Fire();
@@ -162,7 +166,7 @@ public class MyController : MonoBehaviour
     {
         if (dashing)
             return;
-        if (!carriedObject)
+        if (!registerInteractable)
         {
             directionAngle = speed * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
             return;
@@ -172,13 +176,13 @@ public class MyController : MonoBehaviour
 
     }
 
-    public void Interract(InputAction.CallbackContext context)
+    public void Grab(InputAction.CallbackContext context)
     {
        
         if (context.started)
         {
 
-            if (isGrab&&carriedObject)
+            if (isGrab&&registerInteractable)
             {
                 Throw();
                 isGrab = false;
@@ -199,12 +203,12 @@ public class MyController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        carriedObject = other.gameObject.GetComponent<Objects>();
+        registerInteractable = other.gameObject.GetComponent<Objects>();
 
-        if (carriedObject)
+        if (registerInteractable)
         {
             aroundTarget.SetActive(true);
-            aroundTarget.transform.position = carriedObject.transform.position;
+            aroundTarget.transform.position = registerInteractable.transform.position;
             if (!grab)
             {
                 return;
@@ -212,11 +216,12 @@ public class MyController : MonoBehaviour
             other.transform.SetParent(transform.GetChild(0));
             other.transform.localPosition = Vector3.zero;
             other.transform.localRotation = Quaternion.identity;
-            carriedObject = other.gameObject.GetComponent<Objects>();
-            if (carriedObject)
+            carriedObejct = other.gameObject.GetComponent<Objects>();
+            if (carriedObejct)
             {
-                carriedObject.Grab();
+                carriedObejct.Grab();
                 isGrab = true;
+                aroundTarget.SetActive(false);
             }
         }
         else
@@ -224,9 +229,21 @@ public class MyController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (carriedObject)
+        if (registerInteractable)
         {
             aroundTarget.SetActive(false);
+        }
+    }
+    public void Interract(InputAction.CallbackContext context)
+    {
+        var colliders =Physics.OverlapSphere(transform.position, 5);
+        foreach (var collider in colliders)
+        {
+            if (collider.GetComponent<Workshop>())
+            {
+
+                return;
+            }
         }
     }
 
