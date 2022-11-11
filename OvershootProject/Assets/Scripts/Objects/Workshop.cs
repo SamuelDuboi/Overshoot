@@ -10,34 +10,33 @@ public class Workshop : MonoBehaviour
     private WeaponType weaponType;
     public GameObject weaponPrefab;
 
-    public void Dispose(Ammo ammo)
+    public bool Dispose(Ammo ammo)
     {
+        if (ammoType is null) return false;
         ammoType = ammo;
         if (weaponType is not null)
         {
             CreateWeapon();
         }
+        return true;
     }
     
-    public void Dispose(WeaponType weapon)
+    public bool Dispose(WeaponType weapon)
     {
+        if (weaponType is null) return false;
         weaponType = weapon;
         if (ammoType is not null)
             CreateWeapon();
+        return true;
     }
     
     void CreateWeapon()
     {
-        GameObject newWeapon = Instantiate(weaponPrefab, transform.position + transform.forward * 5.0f, Quaternion.identity);
+        GameObject newWeapon = Instantiate(weaponPrefab, transform.position + transform.right * 5.0f, Quaternion.identity);
         Weapon weaponScript = newWeapon.AddComponent<Weapon>();
         weaponScript.Init(ammoType, weaponType);
         ammoType = null;
         weaponType = null;
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+        weaponScript.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
     }
 }

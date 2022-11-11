@@ -13,6 +13,7 @@ public class MyController : MonoBehaviour
     private bool canDash = true;
     public AnimationCurve dashCurve;
     public float dashCooldown = 2;
+    private bool dashing;
     private float Timer;
     public BoxCollider CollectColliBox;
     public Rigidbody myRigidbody;
@@ -20,7 +21,9 @@ public class MyController : MonoBehaviour
     private Vector3 directionAngle;
     
     
-    private GameObject carriedObject;
+    private Objects carriedObject;
+
+    public float throwForce= 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,14 +38,24 @@ public class MyController : MonoBehaviour
         {
             Timer += Time.deltaTime;
             dashForce = 1+dashCurve.Evaluate(Timer)*dashForceMax;
+            return;
         }
+        if(dashing)
+        {
+            dashing = false;
+            gameObject.layer = 7;
+        }
+
     }
     public void Throw(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && carriedObject)
         {
-            Debug.Log("Throw");
+            carriedObject.Dispose(throwForce);
+            carriedObject.transform.parent = null;
+            carriedObject = null;
         }
+
     }
 
     public void Dash(InputAction.CallbackContext context)
@@ -53,6 +66,8 @@ public class MyController : MonoBehaviour
             {
                 canDash = false;
                 Timer = 0;
+                gameObject.layer = 10;
+                dashing = true;
                 StartCoroutine(DashCooldown());
             }
 
@@ -68,7 +83,12 @@ public class MyController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Pew Pew");
+            if (carriedObject)
+            {
+                var Weapon = carriedObject as Weapon;
+                if (Weapon)
+                    Weapon.Fire();
+            }
         }
     }
 
@@ -93,28 +113,32 @@ public class MyController : MonoBehaviour
 
     public void Interract(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            if (carriedObject)
-            {
-                 carriedObject.transform.SetParent(null);
-                 carriedObject = null;
-            }
-            else
-            CollectColliBox.enabled = true;
-        }
-
         if (context.canceled)
         {
             CollectColliBox.enabled = false;
-            
+
         }
+        if (carriedObject)
+            return;
+        if (context.started)
+        {
+            CollectColliBox.enabled = true;
+        }
+
+        
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        collision.gameObject.transform.SetParent(transform.GetChild(0));
-        carriedObject= collision.gameObject;
-        carriedObject.transform.localPosition = Vector3.zero;
+        if (carriedObject)
+            return;
+        collision.transform.SetParent(transform.GetChild(0));
+        collision.transform.localPosition = Vector3.zero;
+        collision.transform.localRotation = Quaternion.identity;
+        carriedObject = collision.gameObject.GetComponent<Objects>();
+            if (carriedObject)
+            {
+                carriedObject.Grab();
+            }
     }
 }

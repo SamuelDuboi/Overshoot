@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class Ammo : Objects
 {
-    public AmmoScriptable datas;
+    public GameObject bullet;
 
-    public override void Dispose()
+    public override void Dispose(float force)
     {
-        base.Dispose();
+        base.Dispose(force);
         foreach (Collider collider in Physics.OverlapSphere(transform.position, 10.0f))
         {
             Workshop workshop = collider.GetComponent<Workshop>();
             if (workshop is not null)
             {
-                workshop.Dispose(this);
-                Destroy(gameObject);
+                if (workshop.Dispose(this))
+                    gameObject.SetActive(false);
             }
         }
     }

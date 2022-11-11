@@ -5,23 +5,18 @@ using UnityEngine;
 public class WeaponType : Objects
 {
     public float fireRate;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    public override void Dispose()
+    public override void Dispose(float force)
     {
-        Debug.Log("Weapon");
-        base.Dispose();
+        base.Dispose(force);
         foreach (Collider collider in Physics.OverlapSphere(transform.position, 10.0f))
         {
             Workshop workshop = collider.GetComponent<Workshop>();
             if (workshop is not null)
             {
-                workshop.Dispose(this);
-                Destroy(gameObject);
+                if (workshop.Dispose(this))
+                    gameObject.SetActive(false);
+                return;
             }
         }
     }
