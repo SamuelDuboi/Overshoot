@@ -128,4 +128,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 78112335192405058}
+  weight: 5
   bullet: {fileID: 6341970837512998422, guid: 1da190ff22a591d48a798e80578f669b, type: 3}
