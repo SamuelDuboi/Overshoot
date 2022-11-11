@@ -10,6 +10,7 @@ public class Objects : MonoBehaviour
     public void Grab()
     {
         rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
     }
 
     public virtual void Dispose()
