@@ -9,7 +9,7 @@ public class PlayerSpawner : MonoBehaviour
 
     public void OnSpawn(PlayerInput input)
     {
-        input.gameObject.transform.position = spawnPoints[input.playerIndex].position;
+        input.gameObject.transform.position = spawnPoints[input.playerIndex].position +Vector3.up*3;
     }
 
 }
