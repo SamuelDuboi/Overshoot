@@ -93,23 +93,4 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Bullets/BasicBullet.cs</url>
-          <line>9</line>
-          <properties documentPath="C:\Users\s.gonand\Documents\Overshoot\OvershootProject\Assets\Scripts\Bullets\BasicBullet.cs" initialLine="9" containingFunctionPresentation="method 'Init'">
-            <startOffsets>
-              <option value="193" />
-            </startOffsets>
-            <endOffsets>
-              <option value="218" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
 </project>
