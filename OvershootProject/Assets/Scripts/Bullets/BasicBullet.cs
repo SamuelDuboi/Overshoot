@@ -13,12 +13,7 @@ public class BasicBullet : Bullet
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapon")
-            return;
-        if (other.CompareTag("Player"))
-        {
-            // Damage player
-        }
+        
         Destroy(gameObject);
     }
 }

@@ -34,7 +34,15 @@ public class Weapon : Objects
     public void Fire()
     {
         if (!canShoot) return;
-        Instantiate(ammo.bullet, firePosition.position, transform.rotation);
+        var bullet = Instantiate(ammo.bullet, firePosition.position, transform.rotation);
+        if (bullet.transform.parent.CompareTag("Team1Player"))
+        {
+            bullet.tag = "Team1Bullet";
+        }
+        else
+        {
+            bullet.tag = "Team2Bullet";
+        }
         StartCoroutine(FireRateTimer());
     }
 
