@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class BasicBullet : Bullet
 {
-    public Rigidbody rb;
     private void Start()
     {
-        rb.velocity = transform.forward * speed;
+        rb.velocity = speed * transform.forward;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
-        
+        if (other.tag == "Weapon")
+            return;
+        base.OnTriggerEnter(other);
         Destroy(gameObject);
     }
 }

@@ -35,7 +35,7 @@ public class Weapon : Objects
     {
         if (!canShoot) return;
         var bullet = Instantiate(ammo.bullet, firePosition.position, transform.rotation);
-        if (bullet.transform.parent.CompareTag("Team1Player"))
+        if (transform.parent.parent.CompareTag("Team1Player"))
         {
             bullet.tag = "Team1Bullet";
         }
