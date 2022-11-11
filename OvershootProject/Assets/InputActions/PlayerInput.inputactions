@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Throw",
-                    "type": "Button",
-                    "id": "ccc00201-b7cc-4e4b-bb61-942044dc7a89",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "7c48ef86-dd21-4ed6-90bf-04d2a49621c9",
@@ -228,17 +219,6 @@
                 },
                 {
                     "name": "",
-                    "id": "3f637c83-80af-4462-a05d-1fcfc764a1f7",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Throw",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "cab136ac-b3e0-4e1b-be0a-0f6d8f968107",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -251,7 +231,7 @@
                 {
                     "name": "",
                     "id": "c9b1007f-ad7c-40ab-a2d5-307bbd68de44",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
