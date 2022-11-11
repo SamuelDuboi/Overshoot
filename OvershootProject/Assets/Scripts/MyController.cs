@@ -153,7 +153,7 @@ public class MyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (carriedObject)
+        if (carriedObject || collision.gameObject.layer == 0)
             return;
         collision.transform.SetParent(transform.GetChild(0));
         collision.transform.localPosition = Vector3.zero;

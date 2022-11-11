@@ -12,7 +12,7 @@ public class Workshop : MonoBehaviour
 
     public bool Dispose(Ammo ammo)
     {
-        if (ammoType is null) return false;
+        if (ammoType) return false;
         ammoType = ammo;
         if (weaponType is not null)
         {
@@ -23,7 +23,7 @@ public class Workshop : MonoBehaviour
     
     public bool Dispose(WeaponType weapon)
     {
-        if (weaponType is null) return false;
+        if (weaponType) return false;
         weaponType = weapon;
         if (ammoType is not null)
             CreateWeapon();
