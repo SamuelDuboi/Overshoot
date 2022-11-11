@@ -10,20 +10,24 @@ public class Workshop : MonoBehaviour
     private WeaponType weaponType;
     public GameObject weaponPrefab;
 
-    public void Dispose(Ammo ammo)
+    public bool Dispose(Ammo ammo)
     {
+        if (ammoType is null) return false;
         ammoType = ammo;
         if (weaponType is not null)
         {
             CreateWeapon();
         }
+        return true;
     }
     
-    public void Dispose(WeaponType weapon)
+    public bool Dispose(WeaponType weapon)
     {
+        if (weaponType is null) return false;
         weaponType = weapon;
         if (ammoType is not null)
             CreateWeapon();
+        return true;
     }
     
     void CreateWeapon()

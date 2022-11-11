@@ -15,8 +15,8 @@ public class Ammo : Objects
             Workshop workshop = collider.GetComponent<Workshop>();
             if (workshop is not null)
             {
-                workshop.Dispose(this);
-                gameObject.SetActive(false);
+                if (workshop.Dispose(this))
+                    gameObject.SetActive(false);
             }
         }
     }

@@ -14,8 +14,9 @@ public class WeaponType : Objects
             Workshop workshop = collider.GetComponent<Workshop>();
             if (workshop is not null)
             {
-                workshop.Dispose(this);
-                gameObject.SetActive(false);
+                if (workshop.Dispose(this))
+                    gameObject.SetActive(false);
+                return;
             }
         }
     }
