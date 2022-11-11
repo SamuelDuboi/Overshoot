@@ -12,14 +12,23 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1;
         this.gameObject.SetActive(false);
-        Debug.Log("resume");
     }
 
     public void OnClickQuit()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("SampleScene");
-        Debug.Log("quit");
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void OnClickPlay()
+    {
+        SceneManager.LoadScene("MarieScene");
+    }
+
+    public void OnClickQuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit game");
     }
 
 }
