@@ -28,16 +28,11 @@ public class Workshop : MonoBehaviour
     
     void CreateWeapon()
     {
-        GameObject newWeapon = Instantiate(weaponPrefab, transform.position + transform.forward * 5.0f, Quaternion.identity);
+        GameObject newWeapon = Instantiate(weaponPrefab, transform.position + transform.right * 5.0f, Quaternion.identity);
         Weapon weaponScript = newWeapon.AddComponent<Weapon>();
         weaponScript.Init(ammoType, weaponType);
         ammoType = null;
         weaponType = null;
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+        weaponScript.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
     }
 }

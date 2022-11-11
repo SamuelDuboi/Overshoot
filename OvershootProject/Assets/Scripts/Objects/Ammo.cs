@@ -16,7 +16,7 @@ public class Ammo : Objects
             if (workshop is not null)
             {
                 workshop.Dispose(this);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

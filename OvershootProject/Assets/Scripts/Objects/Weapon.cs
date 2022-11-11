@@ -6,6 +6,7 @@ public class Weapon : Objects
 {
     private Ammo ammo;
     private WeaponType weaponType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +23,6 @@ public class Weapon : Objects
     {
         this.ammo = ammo;
         this.weaponType = weaponType;
+        rb = GetComponent<Rigidbody>();
     }
 }
