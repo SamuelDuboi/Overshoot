@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 171176995}
+  weapon: {fileID: 1840386689}
 --- !u!54 &171176995
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -592,6 +593,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1840386685}
+  ammo: {fileID: 2052870211}
+  weaponType: {fileID: 1701248572}
+  firePosition: {fileID: 6161973970204019766}
 --- !u!1 &1895806294
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2052870206}
-  datas: {fileID: 0}
+  bullet: {fileID: 6341970837512998422, guid: 1da190ff22a591d48a798e80578f669b, type: 3}
 --- !u!1001 &6161973970204019765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -960,19 +964,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161973969714024222, guid: cc46950741c1ec445ac41016af660388, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6161973969714024222, guid: cc46950741c1ec445ac41016af660388, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6161973969714024222, guid: cc46950741c1ec445ac41016af660388, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6161973969714024222, guid: cc46950741c1ec445ac41016af660388, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6161973969714024222, guid: cc46950741c1ec445ac41016af660388, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -980,7 +984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161973969714024222, guid: cc46950741c1ec445ac41016af660388, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 6161973969714024222, guid: cc46950741c1ec445ac41016af660388, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -989,3 +993,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: cc46950741c1ec445ac41016af660388, type: 3}
+--- !u!4 &6161973970204019766 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6261958089806166392, guid: cc46950741c1ec445ac41016af660388, type: 3}
+  m_PrefabInstance: {fileID: 6161973970204019765}
+  m_PrefabAsset: {fileID: 0}

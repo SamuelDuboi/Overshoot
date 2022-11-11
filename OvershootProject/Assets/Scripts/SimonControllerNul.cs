@@ -8,7 +8,8 @@ public class SimonControllerNul : MonoBehaviour
     public Rigidbody rb;
 
     private Vector3 lastDirection;
-    
+
+    public Weapon weapon;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,11 @@ public class SimonControllerNul : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             movementVector.x = -1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            weapon.Fire();
         }
 
         rb.velocity = movementVector * Time.fixedDeltaTime * 300;

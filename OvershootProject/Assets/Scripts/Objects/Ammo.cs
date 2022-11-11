@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Ammo : Objects
 {
-    public AmmoScriptable datas;
+    public GameObject bullet;
 
     public override void Dispose()
     {
