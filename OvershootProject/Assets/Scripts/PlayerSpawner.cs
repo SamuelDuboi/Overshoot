@@ -10,6 +10,7 @@ public class PlayerSpawner : MonoBehaviour
     public void OnSpawn(PlayerInput input)
     {
         input.gameObject.transform.position = spawnPoints[input.playerIndex].position +Vector3.up*3;
+        input.gameObject.tag = input.playerIndex % 2 == 0 ? "Team1Player1": "Team1Player2";
     }
 
 }

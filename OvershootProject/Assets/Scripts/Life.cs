@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Life : MonoBehaviour
 {
-
+    public MyController controller;
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +20,9 @@ public class Life : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.tag != gameObject.tag && collision.gameObject.GetComponent<Bullet>())
+        {
+            controller.Throw();
+        }
     }
 }
