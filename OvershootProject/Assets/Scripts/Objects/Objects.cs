@@ -7,23 +7,16 @@ public class Objects : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public void Grab()
+    public virtual void Grab()
     {
-        rb.isKinematic = true;
         rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
     }
 
-    public virtual void Dispose()
+    public virtual void Dispose( float force)
     {
         rb.isKinematic = false;
+        rb.AddForce(transform.forward * force, ForceMode.Impulse);
     }
 
-    private void Update()
-    {
-        //For Debug only no use
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            this.Dispose();
-        }
-    }
 }

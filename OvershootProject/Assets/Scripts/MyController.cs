@@ -22,9 +22,8 @@ public class MyController : MonoBehaviour
     
     
     private Objects carriedObject;
-    private Weapon carriedWeapon;
 
-    public float throwForce= 10;
+    public float throwForce= 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +51,11 @@ public class MyController : MonoBehaviour
     {
         if (context.performed && carriedObject)
         {
-            carriedObject.Dispose();
+            carriedObject.Dispose(throwForce);
             carriedObject.transform.parent = null;
             carriedObject = null;
         }
+
     }
 
     public void Dash(InputAction.CallbackContext context)
@@ -83,7 +83,12 @@ public class MyController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Pew Pew");
+            if (carriedObject)
+            {
+                var Weapon = carriedObject as Weapon;
+                if (Weapon)
+                    Weapon.Fire();
+            }
         }
     }
 
@@ -108,28 +113,32 @@ public class MyController : MonoBehaviour
 
     public void Interract(InputAction.CallbackContext context)
     {
-        if(carriedObject || carriedWeapon)
+        if (context.canceled)
+        {
+            CollectColliBox.enabled = false;
+
+        }
+        if (carriedObject)
             return;
         if (context.started)
         {
             CollectColliBox.enabled = true;
         }
 
-        if (context.canceled)
-        {
-            CollectColliBox.enabled = false;
-            
-        }
+        
     }
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (carriedObject)
+            return;
         collision.transform.SetParent(transform.GetChild(0));
         collision.transform.localPosition = Vector3.zero;
         collision.transform.localRotation = Quaternion.identity;
-        carriedObject= collision.gameObject.GetComponent<Objects>();
-        if (!carriedObject)
-            carriedWeapon = collision.gameObject.GetComponent<Weapon>();
-
+        carriedObject = collision.gameObject.GetComponent<Objects>();
+            if (carriedObject)
+            {
+                carriedObject.Grab();
+            }
     }
 }

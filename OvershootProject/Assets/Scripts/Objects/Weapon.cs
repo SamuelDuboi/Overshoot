@@ -21,7 +21,16 @@ public class Weapon : Objects
         firePosition = gameObject.GetComponentInChildren<Transform>();
         canShoot = true;
     }
-
+    public override void Grab()
+    {
+        base.Grab();
+        gameObject.layer = 9;
+    }
+    public override void Dispose(float force)
+    {
+        base.Dispose(force);
+        gameObject.layer = 0;
+    }
     public void Fire()
     {
         if (!canShoot) return;
