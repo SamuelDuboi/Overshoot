@@ -13,6 +13,7 @@ public class MyController : MonoBehaviour
     private bool canDash = true;
     public AnimationCurve dashCurve;
     public float dashCooldown = 2;
+    private bool dashing;
     private float Timer;
     public BoxCollider CollectColliBox;
     public Rigidbody myRigidbody;
@@ -20,7 +21,8 @@ public class MyController : MonoBehaviour
     private Vector3 directionAngle;
     
     
-    private GameObject carriedObject;
+    private Objects carriedObject;
+    private Weapon carriedWeapon;
 
     public float throwForce= 10;
     // Start is called before the first frame update
@@ -37,13 +39,22 @@ public class MyController : MonoBehaviour
         {
             Timer += Time.deltaTime;
             dashForce = 1+dashCurve.Evaluate(Timer)*dashForceMax;
+            return;
         }
+        if(dashing)
+        {
+            dashing = false;
+            gameObject.layer = 7;
+        }
+
     }
     public void Throw(InputAction.CallbackContext context)
     {
         if (context.performed && carriedObject)
         {
-           carriedObject.GetComponent<Rigidbody>().AddForce(transform.forward.normalized*throwForce);
+            carriedObject.Dispose();
+            carriedObject.transform.parent = null;
+            carriedObject = null;
         }
     }
 
@@ -55,6 +66,8 @@ public class MyController : MonoBehaviour
             {
                 canDash = false;
                 Timer = 0;
+                gameObject.layer = 10;
+                dashing = true;
                 StartCoroutine(DashCooldown());
             }
 
@@ -95,7 +108,7 @@ public class MyController : MonoBehaviour
 
     public void Interract(InputAction.CallbackContext context)
     {
-        if(carriedObject)
+        if(carriedObject || carriedWeapon)
             return;
         if (context.started)
         {
@@ -111,8 +124,12 @@ public class MyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        collision.gameObject.transform.SetParent(transform.GetChild(0));
-        carriedObject= collision.gameObject;
-        carriedObject.transform.localPosition = Vector3.zero;
+        collision.transform.SetParent(transform.GetChild(0));
+        collision.transform.localPosition = Vector3.zero;
+        collision.transform.localRotation = Quaternion.identity;
+        carriedObject= collision.gameObject.GetComponent<Objects>();
+        if (!carriedObject)
+            carriedWeapon = collision.gameObject.GetComponent<Weapon>();
+
     }
 }
