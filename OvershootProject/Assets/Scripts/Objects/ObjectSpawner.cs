@@ -21,7 +21,6 @@ public class ObjectSpawner : MonoBehaviour
     {
         var obj = Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Count)], StartPoint.position, Quaternion.identity);
         obj.GetComponent<Rigidbody>().AddForce(transform.forward * speed,  ForceMode.VelocityChange);
-        obj.GetComponent<Rigidbody>().useGravity = false;
         StartCoroutine(Timer());
     }
 
