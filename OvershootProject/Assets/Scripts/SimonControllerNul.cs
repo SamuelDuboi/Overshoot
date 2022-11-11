@@ -50,6 +50,7 @@ public class SimonControllerNul : MonoBehaviour
                 if (hit.collider.GetComponent<Objects>())
                 {
                     hit.collider.GetComponent<Objects>().Grab();
+                    hit.collider.transform.SetParent(transform);
                 }
             }
         }

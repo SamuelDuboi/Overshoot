@@ -13,6 +13,7 @@ public class WeaponType : Objects
 
     public override void Dispose()
     {
+        Debug.Log("Weapon");
         base.Dispose();
         foreach (Collider collider in Physics.OverlapSphere(transform.position, 10.0f))
         {
@@ -20,13 +21,8 @@ public class WeaponType : Objects
             if (workshop is not null)
             {
                 workshop.Dispose(this);
+                Destroy(gameObject);
             }
         }
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

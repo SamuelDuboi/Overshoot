@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 
 public class Workshop : MonoBehaviour
 {
@@ -8,29 +10,29 @@ public class Workshop : MonoBehaviour
     private WeaponType weaponType;
     public GameObject weaponPrefab;
 
-    public Weapon Dispose(Ammo ammo)
+    public void Dispose(Ammo ammo)
     {
         ammoType = ammo;
         if (weaponType is not null)
-            return CreateWeapon();
-        return null;
+        {
+            CreateWeapon();
+        }
     }
     
-    public Weapon Dispose(WeaponType weapon)
+    public void Dispose(WeaponType weapon)
     {
         weaponType = weapon;
         if (ammoType is not null)
-            return CreateWeapon();
-        return null;
+            CreateWeapon();
     }
     
-    Weapon CreateWeapon()
+    void CreateWeapon()
     {
-        Weapon weapon = weaponPrefab.GetComponent<Weapon>();
-        weapon.Init(ammoType, weaponType);
+        GameObject newWeapon = Instantiate(weaponPrefab, transform.position + transform.forward * 5.0f, Quaternion.identity);
+        Weapon weaponScript = newWeapon.AddComponent<Weapon>();
+        weaponScript.Init(ammoType, weaponType);
         ammoType = null;
         weaponType = null;
-        return weapon;
     }
     
     // Update is called once per frame
