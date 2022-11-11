@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Pause.uss?fileID=7433441132597879392&amp;guid=fe7e3be8524a9564faf8ed0d78cb5019&amp;type=3#Pause" />
+    <ui:GroupBox style="height: 566px; align-items: center; justify-content: flex-start; background-color: rgba(67, 62, 62, 0.66);">
+        <ui:Label tabindex="-1" text="Pause" display-tooltip-when-elided="true" style="align-items: center; justify-content: flex-start; font-size: 80px; margin-top: 40px;" />
+        <ui:GroupBox style="width: 434px; align-items: center; justify-content: center; height: 357px; padding-top: 0;">
+            <ui:Button tabindex="-1" text="Resume" display-tooltip-when-elided="true" name="Resume" view-data-key="Resume" style="width: 50%; height: 10%; margin-top: 20px; margin-bottom: 20px; font-size: 20px;" />
+            <ui:Button tabindex="-1" text="Quit" display-tooltip-when-elided="true" name="Quit" view-data-key="Quit" style="width: 50%; height: 10%; margin-top: 20px; margin-bottom: 20px; font-size: 20px;" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>
