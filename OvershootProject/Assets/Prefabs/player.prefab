@@ -610,13 +610,13 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969479401829277554}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 7969479401829277551}
+        m_TargetAssemblyTypeName: MyController, Assembly-CSharp
+        m_MethodName: Grab
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -679,6 +679,7 @@ MonoBehaviour:
   aroundTarget: {fileID: 7810388985401706406}
   ui: {fileID: 2603726476586926631}
   filImage: {fileID: 7391329611669288049}
+  workshop: {fileID: 0}
 --- !u!136 &7969479401829277547
 CapsuleCollider:
   m_ObjectHideFlags: 0

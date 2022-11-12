@@ -13,7 +13,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gauge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/HandlingUI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/HandlingUIMainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -75,6 +75,7 @@
       <workItem from="1668159896648" duration="1000" />
       <workItem from="1668159941295" duration="14215000" />
       <workItem from="1668198931387" duration="773000" />
+      <workItem from="1668242162227" duration="1195000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Weapon
+  - Team1Player
+  - Team2Player
+  - Team1Bullet
+  - Team2Bullet
   layers:
   - Default
   - TransparentFX
