@@ -267,7 +267,7 @@ Transform:
   - {fileID: 212796776}
   - {fileID: 129236629}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &114642037
 MonoBehaviour:
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToSpawn:
-  - {fileID: 78112335192405056, guid: 03d2ed7f13354264f9287ebda58478a0, type: 3}
+  - {fileID: 78112335192405056, guid: abbcd86f7aeb10b45b98a9d3f129989a, type: 3}
   - {fileID: 8966071096938967212, guid: 780cb6eee82eb7a4a821dcd890144e52, type: 3}
   spawnEvery: 5
   speed: 5
@@ -516,7 +516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8673999386610478963, guid: 273687fbb00227c4c9572a2a84b2036c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8673999386610478963, guid: 273687fbb00227c4c9572a2a84b2036c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -997,7 +997,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1172415201
 GameObject:
@@ -1551,7 +1551,7 @@ RectTransform:
   - {fileID: 1174016365}
   - {fileID: 221118509}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 1895806299}
   m_Layer: 0
   m_Name: Workshop
-  m_TagString: Untagged
+  m_TagString: Team1Workshop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1842,9 +1842,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Workshop (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2214834919149971192, guid: 9dc64a9433c125747abeb414c2b1126a, type: 3}
+      propertyPath: m_TagString
+      value: Team2Workshop
+      objectReference: {fileID: 0}
     - target: {fileID: 2214834919149971197, guid: 9dc64a9433c125747abeb414c2b1126a, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2214834919149971197, guid: 9dc64a9433c125747abeb414c2b1126a, type: 3}
       propertyPath: m_LocalPosition.x

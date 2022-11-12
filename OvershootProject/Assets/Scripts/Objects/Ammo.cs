@@ -10,7 +10,7 @@ public class Ammo : Objects
     public override void Dispose(float force)
     {
         base.Dispose(force);
-        foreach (Collider collider in Physics.OverlapSphere(transform.position, 10.0f))
+        foreach (Collider collider in Physics.OverlapSphere(transform.position, 3.0f))
         {
             Workshop workshop = collider.GetComponent<Workshop>();
             if (workshop is not null)
