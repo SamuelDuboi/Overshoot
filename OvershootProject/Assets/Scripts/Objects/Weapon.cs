@@ -31,10 +31,13 @@ public class Weapon : Objects
         base.Dispose(force);
         gameObject.layer = 0;
     }
-    public void Fire()
+    public float Fire()
     {
-        if (!canShoot) return;
+        if (!canShoot) return -1;
         var bullet = Instantiate(ammo.bullet, firePosition.position, transform.rotation);
+        
+        Bullet b = bullet.GetComponent<Bullet>();
+        b.Init(ammo.weight, weaponType.bulletSpeed);
         if (transform.parent.parent.CompareTag("Team1Player"))
         {
             bullet.tag = "Team1Bullet";
@@ -44,6 +47,7 @@ public class Weapon : Objects
             bullet.tag = "Team2Bullet";
         }
         StartCoroutine(FireRateTimer());
+        return weaponType.fireRate;
     }
 
     private IEnumerator FireRateTimer()

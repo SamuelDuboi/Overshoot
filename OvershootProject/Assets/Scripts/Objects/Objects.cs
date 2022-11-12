@@ -6,6 +6,7 @@ using UnityEngine;
 public class Objects : MonoBehaviour
 {
     public Rigidbody rb;
+    public float weight;
 
     public virtual void Grab()
     {
