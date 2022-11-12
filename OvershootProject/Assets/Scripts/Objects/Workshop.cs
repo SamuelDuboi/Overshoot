@@ -33,11 +33,22 @@ public class Workshop : MonoBehaviour
     void CreateWeapon()
     {
         GameObject newWeapon = Instantiate(weaponPrefab, transform.position + transform.right * 5.0f, Quaternion.identity);
-        Weapon weaponScript = newWeapon.AddComponent<Weapon>();
-        weaponScript.Init(ammoType, weaponType);
+        if (weaponType.isShotgun)
+        {
+            Shotgun shotgun = newWeapon.AddComponent<Shotgun>();
+            shotgun.Init(ammoType, weaponType);
+            shotgun.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
+        }
+        else
+        {
+            Weapon weaponScript = newWeapon.AddComponent<Weapon>();
+            weaponScript.Init(ammoType, weaponType);
+            weaponScript.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
+        }
+
         ammoType = null;
         weaponType = null;
-        weaponScript.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
+
     }
 
     private void Update()

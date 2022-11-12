@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8966071096938967203
 MeshFilter:
@@ -129,5 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8966071096938967214}
   weight: 5
+  isShotgun: 1
   fireRate: 3
   bulletSpeed: 15
