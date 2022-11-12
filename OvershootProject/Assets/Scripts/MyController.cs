@@ -26,7 +26,7 @@ public class MyController : MonoBehaviour
     Vector3 lookingAt;
 
     private Objects registerInteractable;
-    private Objects carriedObejct;
+    private Objects carriedObject;
 
 
     public float throwForce = 100;
@@ -38,6 +38,8 @@ public class MyController : MonoBehaviour
     public Image filImage;
 
     public Workshop workshop;
+    public float startMagnitudeDamage = 3;
+    private float knockBack= -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,7 @@ public class MyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myRigidbody.velocity = directionAngle * dashForce;
+        myRigidbody.velocity = directionAngle * dashForce*knockBack;
         if (myRigidbody.velocity.magnitude < minVelocityMangitude)
             myRigidbody.velocity = Vector3.zero;
 
@@ -55,7 +57,7 @@ public class MyController : MonoBehaviour
         if (lookingAt.magnitude > 0.1)
             transform.LookAt(transform.position+ lookingAt);
         else
-            transform.LookAt(transform.position + directionAngle.normalized);
+            transform.LookAt(transform.position + directionAngle);
 
 
         if (Timer < dashCurve.keys[dashCurve.keys.Length - 1].time)
@@ -75,30 +77,52 @@ public class MyController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer ==7 && dashing)
+        if(collision.gameObject.layer == 7 && dashing)
         {
-            Timer = dashCurve.keys[dashCurve.keys.Length-1].time;
+            Timer = dashCurve.keys[dashCurve.keys.Length - 1].time;
         }
+        else if (collision.gameObject.layer == 6)
+        {
+            float velocityMagnitude = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+            if (velocityMagnitude > startMagnitudeDamage)
+            {
+                if (CompareTag("Team1Player"))
+                    GameManager.instance.GaugeTeam1.FillGauge(velocityMagnitude * collision.gameObject.GetComponent<Objects>().weight);
+                else
+                {
+                    GameManager.instance.GaugeTeam2.FillGauge(velocityMagnitude * collision.gameObject.GetComponent<Objects>().weight);
+                }
+            }
+        }
+       
     }
     public void Throw(InputAction.CallbackContext context)
     {
-        if (context.performed && carriedObejct)
+        if (context.performed && carriedObject)
         {
-            carriedObejct.Dispose(throwForce);
-            carriedObejct.transform.parent = null;
-            carriedObejct = null;
+            carriedObject.Dispose(throwForce);
+            carriedObject.transform.parent = null;
+            carriedObject = null;
         }
 
     }
     public void Throw()
     {
-        if (carriedObejct)
+        if (carriedObject)
         {
-            carriedObejct.Dispose(throwForce);
-            carriedObejct.transform.parent = null;
-            carriedObejct = null;
+            carriedObject.Dispose(throwForce);
+            StartCoroutine(KnockBock());
+            carriedObject.transform.parent = null;
+            carriedObject = null;
         }
 
+    }
+
+    IEnumerator KnockBock()
+    {
+        knockBack = -1;
+        yield return new WaitForSeconds(0.5f);
+        knockBack = 1;
     }
 
     public void Dash(InputAction.CallbackContext context)
@@ -126,9 +150,9 @@ public class MyController : MonoBehaviour
     {
         if (context.performed)
         {
-            if (carriedObejct)
+            if (carriedObject)
             {
-                var Weapon = carriedObejct as Weapon;
+                var Weapon = carriedObject as Weapon;
                 if (Weapon)
                 {
                     reloadTime = Weapon.Fire();
@@ -164,14 +188,14 @@ public class MyController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (dashing)
+        if (dashing || knockBack<0)
             return;
-        if (!registerInteractable)
+        if (!carriedObject)
         {
-            directionAngle = speed * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+            directionAngle = speed * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y).normalized;
             return;
         }
-        directionAngle = slowVelocity * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+        directionAngle = slowVelocity * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y).normalized;
 
 
     }
@@ -182,7 +206,7 @@ public class MyController : MonoBehaviour
         if (context.started)
         {
 
-            if (isGrab&&registerInteractable)
+            if (isGrab&& carriedObject)
             {
                 Throw();
                 isGrab = false;
@@ -200,10 +224,17 @@ public class MyController : MonoBehaviour
 
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")|| carriedObject) return;
+        if (!registerInteractable)
+            registerInteractable = other.gameObject.GetComponent<Objects>();
+    }
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.CompareTag("Workshop")) return;
+        if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")|| carriedObject) return;
+        if(!registerInteractable)
         registerInteractable = other.gameObject.GetComponent<Objects>();
 
         if (registerInteractable)
@@ -214,13 +245,13 @@ public class MyController : MonoBehaviour
             {
                 return;
             }
-            other.transform.SetParent(transform.GetChild(0));
-            other.transform.localPosition = Vector3.zero;
-            other.transform.localRotation = Quaternion.identity;
-            carriedObejct = other.gameObject.GetComponent<Objects>();
-            if (carriedObejct)
+            registerInteractable.transform.SetParent(transform.GetChild(0));
+            registerInteractable.transform.localPosition = Vector3.zero;
+            registerInteractable.transform.localRotation = Quaternion.identity;
+            carriedObject = registerInteractable.gameObject.GetComponent<Objects>();
+            if (carriedObject)
             {
-                carriedObejct.Grab();
+                carriedObject.Grab();
                 isGrab = true;
                 aroundTarget.SetActive(false);
             }
@@ -230,10 +261,11 @@ public class MyController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Workshop")) return;
+        if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")) return;
         if (registerInteractable)
         {
             aroundTarget.SetActive(false);
+            registerInteractable = null;
         }
     }
     public void Interract(InputAction.CallbackContext context)

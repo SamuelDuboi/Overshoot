@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6341970837512998421}
   - component: {fileID: 5841970710205765484}
   - component: {fileID: -5631619374127946252}
-  m_Layer: 0
-  m_Name: BasicBullet
+  m_Layer: 11
+  m_Name: Poulpe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 6341970837512998422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.014, y: 1.401, z: -7.393}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
