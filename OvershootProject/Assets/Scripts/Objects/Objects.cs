@@ -18,7 +18,9 @@ public class Objects : MonoBehaviour
     public virtual void Dispose( float force)
     {
         rb.isKinematic = false;
+        rb.useGravity = true;
         GetComponent<Collider>().enabled = true;
+        
 
         rb.AddForce(transform.forward * force, ForceMode.Impulse);
     }
