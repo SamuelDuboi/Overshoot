@@ -76,7 +76,7 @@
       <workItem from="1668159941295" duration="14215000" />
       <workItem from="1668198931387" duration="773000" />
       <workItem from="1668242162227" duration="1195000" />
-      <workItem from="1668246190007" duration="373000" />
+      <workItem from="1668246190007" duration="802000" />
     </task>
     <servers />
   </component>
@@ -96,5 +96,24 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MyController.cs</url>
+          <line>79</line>
+          <properties documentPath="C:\Users\s.gonand\Documents\Overshoot\OvershootProject\Assets\Scripts\MyController.cs" initialLine="79" containingFunctionPresentation="method 'OnCollisionEnter'">
+            <startOffsets>
+              <option value="2077" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2130" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
