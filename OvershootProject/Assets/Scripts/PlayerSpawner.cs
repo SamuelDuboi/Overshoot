@@ -16,13 +16,13 @@ public class PlayerSpawner : MonoBehaviour
         {
             input.gameObject.tag = "Team1Player";
             GameManager.instance.Team1.Add(input.gameObject.GetComponent<MyController>());
-            input.GetComponent<MeshRenderer>().material = mat1;
+            input.GetComponent<MyController>().meshRenderer.materials[0] = mat1;
         }
         else
         {
             input.gameObject.tag = "Team2Player";
             GameManager.instance.Team2.Add(input.gameObject.GetComponent<MyController>());
-            input.GetComponent<MeshRenderer>().material = mat2;
+            input.GetComponent<MyController>().meshRenderer.materials[0] = mat2;
 
         }
     }

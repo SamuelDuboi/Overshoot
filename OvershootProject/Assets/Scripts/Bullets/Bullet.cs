@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
     
     protected virtual void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.name == "Socket")
+            return;
         if ((CompareTag("Team1Bullet") && other.CompareTag("Team1Player")) ||
             (CompareTag("Team2Bullet") && other.CompareTag("Team2Player")))
             return;

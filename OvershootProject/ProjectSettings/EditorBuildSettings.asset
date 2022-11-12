@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SimonEnviroScenees 1.unity
     guid: 295c112ac8b49ec48af1de2cd5a8885f
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: 4253714f477d2874da356e308f76e49e
   m_configObjects: {}

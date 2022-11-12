@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
 public class MyController : MonoBehaviour
@@ -42,6 +41,8 @@ public class MyController : MonoBehaviour
     private float knockBack= 1;
 
     public Animator animator;
+
+    public MeshRenderer meshRenderer;
     // Start is called before the first frame update
     void Start()
     {

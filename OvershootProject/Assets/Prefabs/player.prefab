@@ -681,6 +681,7 @@ MonoBehaviour:
   workshop: {fileID: 0}
   startMagnitudeDamage: 3
   animator: {fileID: 5047321537302301746}
+  meshRenderer: {fileID: 1802420324393506212}
 --- !u!136 &7969479401829277547
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -816,6 +817,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9157621ff758c9e4fbec32bcbe1dc22b, type: 3}
+--- !u!23 &1802420324393506212 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2789748673689311361, guid: 9157621ff758c9e4fbec32bcbe1dc22b, type: 3}
+  m_PrefabInstance: {fileID: 4632983425233122011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5170432116142871856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9157621ff758c9e4fbec32bcbe1dc22b, type: 3}
