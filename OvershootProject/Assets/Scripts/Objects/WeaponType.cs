@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponType : Objects
 {
+    public bool isShotgun;
     public float fireRate;
     public float bulletSpeed;
     public override void Dispose(float force)
