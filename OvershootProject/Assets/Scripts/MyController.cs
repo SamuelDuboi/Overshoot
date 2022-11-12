@@ -38,6 +38,8 @@ public class MyController : MonoBehaviour
     public Image filImage;
 
     public Workshop workshop;
+    public float startMagnitudeDamage = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,9 +77,22 @@ public class MyController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer ==7 && dashing)
+        if(collision.gameObject.layer == 7 && dashing)
         {
-            Timer = dashCurve.keys[dashCurve.keys.Length-1].time;
+            Timer = dashCurve.keys[dashCurve.keys.Length - 1].time;
+        }
+        else if (collision.gameObject.layer == 6)
+        {
+            float velocityMagnitude = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+            if (velocityMagnitude > startMagnitudeDamage)
+            {
+                if (CompareTag("Team1Player"))
+                    GameManager.instance.GaugeTeam1.FillGauge(velocityMagnitude * collision.gameObject.GetComponent<Objects>().weight);
+                else
+                {
+                    GameManager.instance.GaugeTeam2.FillGauge(velocityMagnitude * collision.gameObject.GetComponent<Objects>().weight);
+                }
+            }
         }
     }
     public void Throw(InputAction.CallbackContext context)
