@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
@@ -10,11 +11,13 @@ public class Bullet : MonoBehaviour
 
     protected float weight;
     protected float speed;
+    protected bool ideal;
 
-    public virtual void Init(float weight, float speed)
+    public virtual void Init(float weight, float speed, bool idealBullet)
     {
         this.weight = weight;
         this.speed = speed;
+        ideal = idealBullet;
     }
     
     protected virtual void OnTriggerEnter(Collider other)
@@ -30,11 +33,15 @@ public class Bullet : MonoBehaviour
             {
                 GameManager.instance.GaugeTeam1.FillGauge(rb.velocity.magnitude * weight);
                 Destroy(gameObject);
+                if (ideal)
+                    SceneManager.LoadScene("EndScreen");
             }
             else
             {
                 GameManager.instance.GaugeTeam2.FillGauge(rb.velocity.magnitude * weight);
                 Destroy(gameObject);
+                if (ideal)
+                    SceneManager.LoadScene("EndScreen");
             }
             other.GetComponent<MyController>().Throw();
         }

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class BasicBullet : Bullet
 {
-    public override void Init(float weight, float speed)
+    public override void Init(float weight, float speed, bool idealBullet)
     {
-        base.Init(weight, speed);
+        base.Init(weight, speed, idealBullet);
         rb.velocity = speed * transform.forward;
     }
 

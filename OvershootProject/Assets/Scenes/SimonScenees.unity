@@ -179,6 +179,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 1120160200149084855, guid: 08e47518b10cd474abbf3a842dcde512, type: 3}
+      propertyPath: mat1
+      value: 
+      objectReference: {fileID: 2100000, guid: 16036392cc30c96409f74191cdf8e0b6, type: 2}
+    - target: {fileID: 1120160200149084855, guid: 08e47518b10cd474abbf3a842dcde512, type: 3}
+      propertyPath: mat2
+      value: 
+      objectReference: {fileID: 2100000, guid: b75a8d3dd86f64548b22723b383ea545, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 08e47518b10cd474abbf3a842dcde512, type: 3}

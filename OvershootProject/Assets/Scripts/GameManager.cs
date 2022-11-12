@@ -38,8 +38,11 @@ public class GameManager : MonoBehaviour
         
             Weapon weaponScript = newWeapon.AddComponent<Weapon>();
             weaponScript.Init(Ammo, Ideal);
-            Instantiate(idealWeapon, newWeapon.transform);
-            player.OnTriggerStay(newWeapon.GetComponent<Collider>());
+            GameObject obj = Instantiate(idealWeapon, newWeapon.transform);
+            obj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            player.Throw();
+            player.SetCarriedObject(newWeapon);
+            weaponScript.Grab();
         }
     }
 }

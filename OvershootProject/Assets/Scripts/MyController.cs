@@ -223,6 +223,16 @@ public class MyController : MonoBehaviour
 
 
     }
+    
+    public void SetCarriedObject(GameObject obj)
+    {
+        obj.transform.SetParent(transform);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
+        isGrab = true;
+        carriedObject = obj.GetComponent<Objects>();
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")|| carriedObject) return;
