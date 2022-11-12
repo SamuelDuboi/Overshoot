@@ -9,7 +9,8 @@ TagManager:
   - Team2Player
   - Team1Bullet
   - Team2Bullet
-  - Workshop
+  - Team1Workshop
+  - Team2Workshop
   layers:
   - Default
   - TransparentFX

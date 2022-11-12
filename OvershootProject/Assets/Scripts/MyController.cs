@@ -218,7 +218,7 @@ public class MyController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.CompareTag("Workshop")) return;
+        if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")) return;
         registerInteractable = other.gameObject.GetComponent<Objects>();
 
         if (registerInteractable)
@@ -245,7 +245,7 @@ public class MyController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Workshop")) return;
+        if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")) return;
         if (registerInteractable)
         {
             aroundTarget.SetActive(false);
