@@ -121,7 +121,7 @@ public class MyController : MonoBehaviour
     IEnumerator KnockBock()
     {
         knockBack = -1;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         knockBack = 1;
     }
 
