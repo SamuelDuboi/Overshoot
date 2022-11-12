@@ -111,3 +111,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 6161973969714024210, guid: cc46950741c1ec445ac41016af660388, type: 3}
+  weaponMeshes:
+  - {fileID: 919132149155446097, guid: ecb3bf56eadf84f478ea5f45c3331b06, type: 3}
+  - {fileID: 919132149155446097, guid: 9c043f942162a6c40bd2548cb088deec, type: 3}
+  - {fileID: 919132149155446097, guid: 41930e088c86266438b44c3474c504d1, type: 3}
+  - {fileID: 919132149155446097, guid: 604a4dc95318c5f4aa466d8b2adea8f0, type: 3}
+  - {fileID: 919132149155446097, guid: b265e0b6d26d3c7479d5672962545886, type: 3}
+  - {fileID: 919132149155446097, guid: 10a607bd258c8974ba9e8ffc46ca6dee, type: 3}
+  - {fileID: 919132149155446097, guid: 1ddc5021ed8ec014c885460002937267, type: 3}
+  - {fileID: 919132149155446097, guid: 0ad7fdd4182cc32459b93a4f888d6365, type: 3}
+  - {fileID: 919132149155446097, guid: e25544a3652e6e0488d6e27ba1a0ae98, type: 3}
+  - {fileID: 919132149155446097, guid: 9ebf093074c991a41a8cf7bff4b7ef56, type: 3}
