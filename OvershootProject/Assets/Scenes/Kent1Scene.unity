@@ -490,6 +490,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5802667156151357801, guid: ae7ba1e2dbc97ce438ce7c88d24a7500, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6272826493232065874, guid: ae7ba1e2dbc97ce438ce7c88d24a7500, type: 3}
       propertyPath: m_RootOrder
       value: 1
