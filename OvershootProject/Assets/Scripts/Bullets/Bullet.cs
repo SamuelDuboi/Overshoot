@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
                 GameManager.instance.GaugeTeam2.FillGauge(rb.velocity.magnitude * weight);
                 Destroy(gameObject);
             }
+            other.GetComponent<MyController>().Throw();
         }
         else if (other.CompareTag("Team1Bullet") || other.CompareTag("Team2Bullet"))
         {
