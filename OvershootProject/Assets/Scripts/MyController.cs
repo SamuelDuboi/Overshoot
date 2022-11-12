@@ -229,7 +229,7 @@ public class MyController : MonoBehaviour
         if (!registerInteractable)
             registerInteractable = other.gameObject.GetComponent<Objects>();
     }
-    private void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
 
         if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")|| carriedObject) return;

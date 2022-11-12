@@ -15,6 +15,6 @@ public class PinataBullet : Bullet
     {
         base.OnTriggerEnter(other);
         Instantiate(explosionBullet,transform.position, Quaternion.identity);
-        Destroy(explosionBullet);   
+        Destroy(gameObject);   
     }
 }
