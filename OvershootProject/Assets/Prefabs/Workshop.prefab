@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 6979587144522831690}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &2214834919149971198
 BoxCollider:
@@ -61,15 +61,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 6161973969714024210, guid: cc46950741c1ec445ac41016af660388, type: 3}
   weaponMeshes:
-  - {fileID: 919132149155446097, guid: 9c043f942162a6c40bd2548cb088deec, type: 3}
-  - {fileID: 919132149155446097, guid: 41930e088c86266438b44c3474c504d1, type: 3}
-  - {fileID: 919132149155446097, guid: 604a4dc95318c5f4aa466d8b2adea8f0, type: 3}
-  - {fileID: 919132149155446097, guid: b265e0b6d26d3c7479d5672962545886, type: 3}
-  - {fileID: 919132149155446097, guid: 10a607bd258c8974ba9e8ffc46ca6dee, type: 3}
-  - {fileID: 919132149155446097, guid: 1ddc5021ed8ec014c885460002937267, type: 3}
-  - {fileID: 919132149155446097, guid: 0ad7fdd4182cc32459b93a4f888d6365, type: 3}
-  - {fileID: 919132149155446097, guid: e25544a3652e6e0488d6e27ba1a0ae98, type: 3}
-  - {fileID: 919132149155446097, guid: 9ebf093074c991a41a8cf7bff4b7ef56, type: 3}
+  - {fileID: 4454005200280320851, guid: 553c250c671df90418edec28a61caae5, type: 3}
+  - {fileID: 2285472807005955362, guid: 9b37d57783962f24986066e3676b45f2, type: 3}
+  - {fileID: 937646791839725322, guid: 38417c5762d82f84c97c7cbe0ba1e183, type: 3}
+  - {fileID: 5928213908139924522, guid: 08f9e081a8aff7b4c8a8d6ea25fe4493, type: 3}
+  - {fileID: 3214930208473748787, guid: 0262cb42ad18f2b4dbc7481393bb7bd7, type: 3}
+  - {fileID: 6433873978179255523, guid: f7f6f4bc68f81884fafc83fd7f558190, type: 3}
+  - {fileID: 1737674451762658138, guid: 5c168f57f8445df41a2810abb223193b, type: 3}
+  - {fileID: 2919545515336720573, guid: 0cd5d8d6f3aa1894f8e284cbeae20c81, type: 3}
+  - {fileID: 9137004129426973545, guid: 2ec9c9e1cbba00b48b01815e3311059b, type: 3}
 --- !u!1001 &7446351214726869153
 PrefabInstance:
   m_ObjectHideFlags: 0
