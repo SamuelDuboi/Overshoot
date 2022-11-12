@@ -125,6 +125,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _TexSize: 3.57
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
