@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2214834919149971193}
   m_Layer: 0
   m_Name: Workshop
-  m_TagString: Workshop
+  m_TagString: Team2Workshop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &2214834919149971196
 MeshFilter:
@@ -112,7 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 6161973969714024210, guid: cc46950741c1ec445ac41016af660388, type: 3}
   weaponMeshes:
-  - {fileID: 919132149155446097, guid: ecb3bf56eadf84f478ea5f45c3331b06, type: 3}
   - {fileID: 919132149155446097, guid: 9c043f942162a6c40bd2548cb088deec, type: 3}
   - {fileID: 919132149155446097, guid: 41930e088c86266438b44c3474c504d1, type: 3}
   - {fileID: 919132149155446097, guid: 604a4dc95318c5f4aa466d8b2adea8f0, type: 3}
