@@ -39,7 +39,7 @@ public class MyController : MonoBehaviour
 
     public Workshop workshop;
     public float startMagnitudeDamage = 3;
-    private float knockBack= -1;
+    private float knockBack= 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -212,7 +212,6 @@ public class MyController : MonoBehaviour
                 isGrab = false;
                 return;
             }
-            Debug.Log("grab");
                 grab = true;
 
         }
