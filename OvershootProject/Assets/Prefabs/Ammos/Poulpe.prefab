@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6341970837512998427}
   - component: {fileID: 6341970837512998420}
   - component: {fileID: 6341970837512998421}
-  - component: {fileID: 5841970710205765484}
   - component: {fileID: -5631619374127946252}
+  - component: {fileID: -4375101502337075905}
   m_Layer: 11
   m_Name: Poulpe
   m_TagString: Untagged
@@ -99,19 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5841970710205765484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6341970837512998422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2deb47e11269f3946a9db6ac8efebadf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: -5631619374127946252}
 --- !u!54 &-5631619374127946252
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,3 +115,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-4375101502337075905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341970837512998422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50edf3312078e3849b4abe7b0b25ac4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: -5631619374127946252}
+  maxRebounds: 3

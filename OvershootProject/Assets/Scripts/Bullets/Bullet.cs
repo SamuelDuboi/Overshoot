@@ -24,15 +24,18 @@ public class Bullet : MonoBehaviour
         {
             // Damage player
             if (CompareTag("Team1Bullet"))
+            {
                 GameManager.instance.GaugeTeam1.FillGauge(rb.velocity.magnitude * weight);
+                Destroy(gameObject);
+            }
             else
             {
                 GameManager.instance.GaugeTeam2.FillGauge(rb.velocity.magnitude * weight);
+                Destroy(gameObject);
             }
             other.GetComponent<MyController>().Throw();
         }
-
-        else if (other.CompareTag("Team1Bullet") || other.CompareTag("Team2Bullet"))
+        else if ((other.CompareTag("Team1Bullet") && CompareTag("Team2Bullet")) || (other.CompareTag("Team2Bullet") && CompareTag("Team1Bullet")))
         {
             rb.velocity = -rb.velocity;
             other.GetComponent<Bullet>().rb.velocity = -other.GetComponent<Bullet>().rb.velocity;
