@@ -9,9 +9,9 @@ public class PoulpeBullet : Bullet
     public int maxRebounds;
     private int nbRebounds;
     
-    public override void Init(float weight, float speed)
+    public override void Init(float weight, float speed, bool ideal)
     {
-        base.Init(weight, speed);
+        base.Init(weight, speed, ideal);
         rb.velocity = speed * transform.forward;
         nbRebounds = 0;
     }

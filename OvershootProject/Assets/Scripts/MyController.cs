@@ -40,10 +40,13 @@ public class MyController : MonoBehaviour
     public Workshop workshop;
     public float startMagnitudeDamage = 3;
     private float knockBack= 1;
+
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         Timer = dashCurve.keys[1].time;
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -74,6 +77,10 @@ public class MyController : MonoBehaviour
             gameObject.layer = 7;
         }
 
+        /*if (myRigidbody.velocity == Vector3.zero)
+        {
+            animator.SetTrigger("isStopped");
+        }*/
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -135,6 +142,7 @@ public class MyController : MonoBehaviour
                 Timer = 0;
                 gameObject.layer = 10;
                 dashing = true;
+                animator.SetTrigger("isDashing");
                 StartCoroutine(DashCooldown());
             }
 
@@ -188,6 +196,7 @@ public class MyController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        animator.SetTrigger("isWalking");
         if (dashing || knockBack<0)
             return;
         if (!carriedObject)
@@ -196,8 +205,6 @@ public class MyController : MonoBehaviour
             return;
         }
         directionAngle = slowVelocity * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y).normalized;
-
-
     }
 
     public void Grab(InputAction.CallbackContext context)
@@ -223,6 +230,16 @@ public class MyController : MonoBehaviour
 
 
     }
+    
+    public void SetCarriedObject(GameObject obj)
+    {
+        obj.transform.SetParent(transform);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
+        isGrab = true;
+        carriedObject = obj.GetComponent<Objects>();
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")|| carriedObject) return;

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("MarieScene");
+        SceneManager.LoadScene("SimonEnviroScenees 1");
     }
 
     public void OnClickQuitGame()
