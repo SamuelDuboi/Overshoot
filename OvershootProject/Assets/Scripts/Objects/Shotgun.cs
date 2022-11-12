@@ -12,7 +12,7 @@ public class Shotgun : Weapon
             var bullet = Instantiate(ammo.bullet, firePosition.position, transform.rotation);
 
             Bullet b = bullet.GetComponent<Bullet>();
-            b.Init(ammo.weight, weaponType.bulletSpeed);
+            b.Init(ammo.weight, weaponType.bulletSpeed, false);
             b.rb.velocity = weaponType.bulletSpeed * (transform.forward + new Vector3(Mathf.Cos(30 * i), 0, Mathf.Sin(30 * i)).normalized);
             ;
 

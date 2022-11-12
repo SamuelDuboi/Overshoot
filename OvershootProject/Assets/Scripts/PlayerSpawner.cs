@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerSpawner : MonoBehaviour
 {
     public List<Transform> spawnPoints = new List<Transform>();
+    public Material mat1;
+    public Material mat2;
 
     public void OnSpawn(PlayerInput input)
     {
@@ -14,13 +16,15 @@ public class PlayerSpawner : MonoBehaviour
         {
             input.gameObject.tag = "Team1Player";
             GameManager.instance.Team1.Add(input.gameObject.GetComponent<MyController>());
+            input.GetComponent<MeshRenderer>().material = mat1;
         }
         else
         {
             input.gameObject.tag = "Team2Player";
             GameManager.instance.Team2.Add(input.gameObject.GetComponent<MyController>());
+            input.GetComponent<MeshRenderer>().material = mat2;
+
         }
-        input.gameObject.tag = input.playerIndex % 2 == 0 ? "Team1Player": "Team2Player";
     }
 
 }

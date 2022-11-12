@@ -31,13 +31,13 @@ public class Weapon : Objects
         base.Dispose(force);
         gameObject.layer = 0;
     }
-    public  virtual float Fire()
+    public virtual float Fire()
     {
         if (!canShoot) return -1;
         var bullet = Instantiate(ammo.bullet, firePosition.position, transform.rotation);
         
         Bullet b = bullet.GetComponent<Bullet>();
-        b.Init(ammo.weight, weaponType.bulletSpeed);
+        b.Init(ammo.weight, weaponType.bulletSpeed, ammo.type == AmmoType.Ideal);
         if (transform.parent.parent.CompareTag("Team1Player"))
         {
             bullet.tag = "Team1Bullet";

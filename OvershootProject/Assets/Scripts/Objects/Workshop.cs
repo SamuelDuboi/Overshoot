@@ -99,13 +99,13 @@ public class Workshop : MonoBehaviour
         {
             Shotgun shotgun = newWeapon.AddComponent<Shotgun>();
             shotgun.Init(ammoType, weaponType);
-            shotgun.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
+            shotgun.rb.AddForce((transform.right + transform.up).normalized  , ForceMode.Impulse);
         }
         else
         {
             Weapon weaponScript = newWeapon.AddComponent<Weapon>();
             weaponScript.Init(ammoType, weaponType);
-            weaponScript.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
+            weaponScript.rb.AddForce((transform.right + transform.up).normalized , ForceMode.Impulse);
         }
         int index = GetMeshIndex() - 1;
         Instantiate(weaponMeshes[index], newWeapon.transform);
