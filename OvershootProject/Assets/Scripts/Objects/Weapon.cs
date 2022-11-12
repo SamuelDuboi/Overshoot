@@ -5,13 +5,13 @@ using UnityEngine;
 public class Weapon : Objects
 {
     [SerializeField]
-    private Ammo ammo;
+    protected Ammo ammo;
     [SerializeField]
-    private WeaponType weaponType;
+    protected WeaponType weaponType;
 
     public Transform firePosition;
 
-    private bool canShoot = true;
+    protected bool canShoot = true;
 
     public void Init(Ammo ammo, WeaponType weaponType)
     {
@@ -31,7 +31,7 @@ public class Weapon : Objects
         base.Dispose(force);
         gameObject.layer = 0;
     }
-    public float Fire()
+    public  virtual float Fire()
     {
         if (!canShoot) return -1;
         var bullet = Instantiate(ammo.bullet, firePosition.position, transform.rotation);
@@ -50,7 +50,7 @@ public class Weapon : Objects
         return weaponType.fireRate;
     }
 
-    private IEnumerator FireRateTimer()
+    protected IEnumerator FireRateTimer()
     {
         canShoot = false;
         yield return new WaitForSeconds(weaponType.fireRate);
