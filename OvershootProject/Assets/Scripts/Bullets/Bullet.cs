@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
         this.speed = speed;
     }
     
-    protected void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if ((CompareTag("Team1Bullet") && other.CompareTag("Team2Player")) || 
             (CompareTag("Team2Bullet") && other.CompareTag("Team1Player")))

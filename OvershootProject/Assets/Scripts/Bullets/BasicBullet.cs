@@ -11,7 +11,7 @@ public class BasicBullet : Bullet
         rb.velocity = speed * transform.forward;
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Weapon"))
             return;
