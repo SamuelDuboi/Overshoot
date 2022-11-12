@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +12,10 @@ public class Gauge : MonoBehaviour
         currentFill += step;
         slider.value = currentFill / length;
         if (currentFill >= length)
-            Debug.Log("WIN");
+        {
+            GameManager.instance.GiveIdealWeapon(this);
+            currentFill = 0;
+        }
     }
 
     public void RemoveGauge(float step)

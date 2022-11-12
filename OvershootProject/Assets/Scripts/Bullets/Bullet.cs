@@ -19,6 +19,9 @@ public class Bullet : MonoBehaviour
     
     protected virtual void OnTriggerEnter(Collider other)
     {
+        if ((CompareTag("Team1Bullet") && other.CompareTag("Team1Player")) ||
+            (CompareTag("Team2Bullet") && other.CompareTag("Team2Player")))
+            return;
         if ((CompareTag("Team1Bullet") && other.CompareTag("Team2Player")) || 
             (CompareTag("Team2Bullet") && other.CompareTag("Team1Player")))
         {
@@ -35,7 +38,8 @@ public class Bullet : MonoBehaviour
             }
             other.GetComponent<MyController>().Throw();
         }
-        else if ((other.CompareTag("Team1Bullet") && CompareTag("Team2Bullet")) || (other.CompareTag("Team2Bullet") && CompareTag("Team1Bullet")))
+        else if ((other.CompareTag("Team1Bullet") && CompareTag("Team2Bullet")) ||
+                 (other.CompareTag("Team2Bullet") && CompareTag("Team1Bullet")))
         {
             rb.velocity = -rb.velocity;
             other.GetComponent<Bullet>().rb.velocity = -other.GetComponent<Bullet>().rb.velocity;

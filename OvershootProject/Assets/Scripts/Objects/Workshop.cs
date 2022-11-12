@@ -51,15 +51,6 @@ public class Workshop : MonoBehaviour
     {
         switch (ammoType.type)
         {
-            case AmmoType.Ideal:
-                switch (weaponType.type)
-                {
-                    case WeaponTypeEnum.Ideal:
-                        return 0;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
             case AmmoType.Rebound:
                 switch (weaponType.type)
                 {
@@ -116,7 +107,7 @@ public class Workshop : MonoBehaviour
             weaponScript.Init(ammoType, weaponType);
             weaponScript.rb.AddForce((transform.right + transform.up).normalized * 5.0f, ForceMode.Impulse);
         }
-        int index = GetMeshIndex();
+        int index = GetMeshIndex() - 1;
         Instantiate(weaponMeshes[index], newWeapon.transform);
 
         ammoType = null;
