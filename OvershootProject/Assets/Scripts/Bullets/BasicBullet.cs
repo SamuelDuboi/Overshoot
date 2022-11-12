@@ -16,6 +16,7 @@ public class BasicBullet : Bullet
         if (other.CompareTag("Weapon"))
             return;
         base.OnTriggerEnter(other);
-        Destroy(gameObject);
+        if (!other.CompareTag("Team1Bullet") && !other.CompareTag("Team2Bullet"))
+            Destroy(gameObject);
     }
 }
