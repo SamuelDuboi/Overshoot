@@ -39,7 +39,7 @@ public class MyController : MonoBehaviour
 
     public Workshop workshop;
     public float startMagnitudeDamage = 3;
-
+    private float knockBack;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +57,7 @@ public class MyController : MonoBehaviour
         if (lookingAt.magnitude > 0.1)
             transform.LookAt(transform.position+ lookingAt);
         else
-            transform.LookAt(transform.position + directionAngle.normalized);
+            transform.LookAt(transform.position + directionAngle);
 
 
         if (Timer < dashCurve.keys[dashCurve.keys.Length - 1].time)
@@ -94,6 +94,7 @@ public class MyController : MonoBehaviour
                 }
             }
         }
+       
     }
     public void Throw(InputAction.CallbackContext context)
     {
@@ -110,6 +111,7 @@ public class MyController : MonoBehaviour
         if (carriedObejct)
         {
             carriedObejct.Dispose(throwForce);
+            Dash();
             carriedObejct.transform.parent = null;
             carriedObejct = null;
         }
@@ -181,12 +183,12 @@ public class MyController : MonoBehaviour
     {
         if (dashing)
             return;
-        if (!registerInteractable)
+        if (!carriedObejct)
         {
-            directionAngle = speed * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+            directionAngle = speed * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y).normalized;
             return;
         }
-        directionAngle = slowVelocity * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+        directionAngle = slowVelocity * new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y).normalized;
 
 
     }
@@ -197,7 +199,7 @@ public class MyController : MonoBehaviour
         if (context.started)
         {
 
-            if (isGrab&&registerInteractable)
+            if (isGrab&& carriedObejct)
             {
                 Throw();
                 isGrab = false;
@@ -215,10 +217,17 @@ public class MyController : MonoBehaviour
 
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")) return;
+        if (!registerInteractable)
+            registerInteractable = other.gameObject.GetComponent<Objects>();
+    }
     private void OnTriggerStay(Collider other)
     {
 
         if (other.CompareTag("Team1Workshop") || other.CompareTag("Team2Workshop")) return;
+        if(!registerInteractable)
         registerInteractable = other.gameObject.GetComponent<Objects>();
 
         if (registerInteractable)
@@ -229,10 +238,10 @@ public class MyController : MonoBehaviour
             {
                 return;
             }
-            other.transform.SetParent(transform.GetChild(0));
-            other.transform.localPosition = Vector3.zero;
-            other.transform.localRotation = Quaternion.identity;
-            carriedObejct = other.gameObject.GetComponent<Objects>();
+            registerInteractable.transform.SetParent(transform.GetChild(0));
+            registerInteractable.transform.localPosition = Vector3.zero;
+            registerInteractable.transform.localRotation = Quaternion.identity;
+            carriedObejct = registerInteractable.gameObject.GetComponent<Objects>();
             if (carriedObejct)
             {
                 carriedObejct.Grab();
@@ -249,6 +258,7 @@ public class MyController : MonoBehaviour
         if (registerInteractable)
         {
             aroundTarget.SetActive(false);
+            registerInteractable = null;
         }
     }
     public void Interract(InputAction.CallbackContext context)
